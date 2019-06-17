@@ -1,0 +1,19 @@
+请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
+
+解题思路：从后往前遍历
+//str.charAt(0) 获取字符串的第一个字符是什么
+
+public class Solution {
+    public String replaceSpace (StringBuffer str){
+        StringBuffer restr = new StringBuffer();
+        int len = str.length() - 1;
+        for (int i=len; i>=0; i--) {
+           if (str.charAt(i) == ' '){
+              restr.append("02%");
+           }else {
+              restr.append(str.charAt(i));
+           }
+        }
+        return restr.reverse().toString();
+    }
+}
