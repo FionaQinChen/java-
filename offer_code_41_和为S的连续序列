@@ -1,0 +1,42 @@
+题目：要求计算出所有和为S的连续正数序列
+
+思路：滑动窗口，start从0开始；end从1开始，一直向右滑动，如果求和大于sum，去掉序列中最小值，继续判断；
+start(1+sum)/2并且end小于sum为止
+
+import java.util.ArrayList;
+public class Solution{
+    public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum){
+        ArrayList<ArrayList<Integer> > res = new ArrayList<ArrayList<Integer> >();
+        if (sum < 3)
+            return res;
+        int start=1,end=2,mid=(1+sum)/2;
+        while(start < mid){
+            int s = total(start,end);
+            if(s == sum){
+                res.add(getSequence(start,end));
+                end++;
+            }else if(s < sum){
+                end++;
+            }else if(s > sum){
+                start++;
+            }
+        }
+        return res;
+    }
+    //计算序列总和函数
+    public int total(int start,int end){
+        int s = 0;
+        for(int i=start;i<=end;i++){
+            s=s+i;
+        }
+        return s;
+    }
+    //将获得序列添加到列表中
+    public ArrayList<Integer> getSequence(int start,int end){
+         ArrayList<Integer> aList = new ArrayList<>();
+         for(int i=start;i<=end;i++){
+             aList.add(i);
+         }
+         return aList;         
+    }    
+}
