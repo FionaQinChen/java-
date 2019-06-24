@@ -1,0 +1,51 @@
+题目：输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。
+
+思路：
+
+public class Solution{
+    public int NumberOf1(int n){
+        int flag=0
+        int count=0;
+        int yu;
+        //判断是否是0
+        if(n == 0)
+            return 0;
+        //输入正数
+        if(n>0){
+            while(n!=0){
+                yu=n%2;
+                n=n/2;                
+                if(yu == 1){
+                    count++;
+                }
+            }
+        }
+        //输入负数,要考虑特殊值-1，-127
+        if(n<0){
+          if(n==-1){
+              count=8;
+          }
+           while(n!=0){
+                yu=n%2;
+                n=n/2;                
+                if(yu == 1){
+                    flag = 1;
+                }
+                if(flag==1)
+                    break;                
+            }
+           while(n!=0){
+                yu=n%2;
+                n=n/2;                
+                if(yu == 0){
+                    count++;
+                }
+            } 
+            count++;
+        }
+        return count;
+    }
+}
+
+
+https://www.weiweiblog.cn/numberof1/
